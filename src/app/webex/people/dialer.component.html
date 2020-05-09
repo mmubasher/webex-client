@@ -1,0 +1,25 @@
+<div class="container">
+    <fieldset>
+        <div id="contact" >
+            <textarea type="text" id="token" placeholder="Your access token" [(ngModel)]="token"></textarea>
+            <textarea type="text" id="destinationId" placeholder="Webex Space/ PersonId/ PersonEmail" [(ngModel)]="destinationId"></textarea>
+        </div>
+    </fieldset>
+</div>
+
+<div>
+    <div style="display: flex">
+        <video #selfVideoElem autoplay muted style="width:50%"></video>
+        <div style="width:50%">
+            <audio #remoteAudioElem muted autoplay></audio>
+            <video #remoteVideoElem muted autoplay></video>
+        </div>
+    </div>
+
+    <button (click)="call()" [disabled]="isCallInProgress"
+            style="position:absolute; z-index: 1000; bottom: 0; width: 200px; height: 60px;" type="button">Call
+    </button>
+    <button (click)="hangUp()" [disabled]="!isCallInProgress" type="button"
+            style="position:absolute; z-index: 1000; margin-left: 300px; bottom: 0; width: 200px; height: 60px;">Hang Up
+    </button>
+</div>

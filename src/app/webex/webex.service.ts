@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
 
 declare var Webex: any;
 
@@ -11,7 +10,6 @@ export class WebexService {
   remoteViewAudioHTMLElem: HTMLAudioElement;
   private webex: any;
   private meeting: any;
-  env = environment;
 
   constructor() {
 
@@ -27,7 +25,7 @@ export class WebexService {
     }
   }
 
-  initWebex(token): void {
+  initWebex(token, destinationId): void {
     this.webex = Webex.init({
       config: {
         meetings: {
@@ -42,7 +40,7 @@ export class WebexService {
     this.webex.meetings.register()
       .then(
         (isRegistered) => {
-          return this.webex.meetings.create(this.env.webex.roomId).then(
+          return this.webex.meetings.create(destinationId).then(
             (meeting) => {
               this.meeting = meeting;
               // Call our helper function for binding events to meetings
